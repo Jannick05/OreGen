@@ -1,7 +1,7 @@
 name: OreGen
 version: '${project.version}'
 main: dk.nydt.OreGen
-api-version: 1.19
+api-version: 1.8
 authors: [ Nydt, Shad0wsense ]
 description: Generator plugin for /server Ore
 website: mcstore.dk
