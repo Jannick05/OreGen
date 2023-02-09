@@ -2,9 +2,11 @@ package dk.nydt;
 
 import dk.nydt.config.Config;
 import dk.nydt.config.UserData;
+import dk.nydt.events.BlockPlace;
 import dk.nydt.events.PlayerJoin;
 import dk.nydt.events.PlayerQuit;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -28,6 +30,7 @@ public class OreGen extends JavaPlugin {
         //Registering Listeners
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BlockPlace(this), this);
 
         //Creating userdata directory
         File directory = new File(this.getDataFolder(), "userdata");
