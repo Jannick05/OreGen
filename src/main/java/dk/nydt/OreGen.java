@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class OreGen extends JavaPlugin {
-
+    //Todo:
     private static PluginManager pluginManager;
     public static Config config;
     public static FileConfiguration configYML;
