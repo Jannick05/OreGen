@@ -23,9 +23,11 @@ public class PlayerJoin implements Listener {
         Player p = e.getPlayer();
 
         //Checks and creates userdata file, if it doesn't already exist.
-        UserData.CreateUserData(p, plugin);
-        UserData.addDataToUserData(p, "PlayerJoinEXP.exp", p.getExp(), plugin);
-        Bukkit.broadcastMessage(UserData.getStringDataUserdata(p, "PlayerJoinEXP.exp", plugin));
+        Bukkit.broadcastMessage("UserData.UserDataExist(p) " + UserData.UserDataExist(p));
+        if(!UserData.UserDataExist(p)){
+            UserData.CreateUserData(p);
+            UserData.setDataToUserData(p, "GensTotal", 0);
+        }
 
     }
 }

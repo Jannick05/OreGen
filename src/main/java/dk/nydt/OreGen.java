@@ -6,7 +6,6 @@ import dk.nydt.events.BlockPlace;
 import dk.nydt.events.PlayerJoin;
 import dk.nydt.events.PlayerQuit;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -52,7 +51,7 @@ public class OreGen extends JavaPlugin {
         // Plugin shutdown logic
         for(Player player : Bukkit.getOnlinePlayers()) {
             System.out.println("Saver alt userdata");
-            UserData.saveUserData(player, instance);
+            UserData.saveUserData(player);
         }
     }
 

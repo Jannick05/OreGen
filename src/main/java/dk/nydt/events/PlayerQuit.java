@@ -17,8 +17,8 @@ public class PlayerQuit implements Listener {
     @EventHandler
     public void PlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        if (UserData.UserDataExist(p, plugin)) {
-            UserData.saveUserData(p, plugin);
+        if (UserData.UserDataExist(p)) {
+            UserData.saveUserData(p);
         }
     }
 
