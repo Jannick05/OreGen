@@ -1,6 +1,5 @@
 package dk.nydt.gens;
 
-import com.mojang.authlib.yggdrasil.response.User;
 import dk.nydt.config.UserData;
 import dk.nydt.utils.Chat;
 import org.bukkit.entity.Player;

@@ -2,12 +2,14 @@ package dk.nydt.config;
 
 import dk.nydt.OreGen;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 
 public class UserData {
@@ -90,6 +92,13 @@ public class UserData {
         FileConfiguration userConfig = YamlConfiguration.loadConfiguration(userFile);
         return userConfig.getInt(path);
     }
+
+    public static Double getDoubleDataUserdata(Player player, String path) {
+        File userFile = new File(OreGen.getInstance().getDataFolder() + File.separator + "userdata" + File.separator + player.getUniqueId() + ".yml");
+        FileConfiguration userConfig = YamlConfiguration.loadConfiguration(userFile);
+        return userConfig.getDouble(path);
+    }
+
 
 }
 
