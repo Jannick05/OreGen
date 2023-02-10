@@ -1,11 +1,9 @@
 package dk.nydt.events;
 
-import com.mojang.authlib.yggdrasil.response.User;
 import dk.nydt.OreGen;
 import dk.nydt.config.UserData;
+import dk.nydt.gens.DefaultConfig;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,9 +23,14 @@ public class PlayerJoin implements Listener {
 
         //Checks and creates userdata file, if it doesn't already exist.
         Bukkit.broadcastMessage("UserData.UserDataExist(p) " + UserData.UserDataExist(p));
+
+
         if(!UserData.UserDataExist(p)){
             UserData.CreateUserData(p);
-            UserData.setDataToUserData(p, "GensTotal", 0);
+
+
+            //New
+            DefaultConfig.defaultConfig(p);
         }
 
     }

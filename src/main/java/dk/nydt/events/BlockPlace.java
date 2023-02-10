@@ -1,7 +1,9 @@
 package dk.nydt.events;
 
 import dk.nydt.OreGen;
+import dk.nydt.config.UserData;
 import dk.nydt.gens.RegisterGen;
+import dk.nydt.utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,7 +27,17 @@ public class BlockPlace implements Listener {
         Location location = event.getBlock().getLocation();
         Material block = event.getBlock().getType();
         Bukkit.broadcastMessage("block " + block);
-        RegisterGen.registerGen(location, block, player);
+
+        //New
+
+        if (!UserData.getintDataUserdata(player, "GensTotal").equals(UserData.getintDataUserdata(player, "GensMax"))) {
+            RegisterGen.registerGen(location, block, player);
+            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("PlacedGenMessage")));
+        } else {
+            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("MaxGensMessage")));
+            event.setCancelled(true);
+        }
+
 
     }
 }
