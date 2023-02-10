@@ -2,6 +2,7 @@ package dk.nydt.events;
 
 import dk.nydt.OreGen;
 import dk.nydt.config.UserData;
+import dk.nydt.gens.DefaultConfig;
 import dk.nydt.gens.RegisterGen;
 import dk.nydt.utils.Chat;
 import org.bukkit.Bukkit;
@@ -29,15 +30,18 @@ public class BlockPlace implements Listener {
         Bukkit.broadcastMessage("block " + block);
 
         //New
-
-        if (!UserData.getintDataUserdata(player, "GensTotal").equals(UserData.getintDataUserdata(player, "GensMax"))) {
-            RegisterGen.registerGen(location, block, player);
-            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("PlacedGenMessage")));
+        if (UserData.UserDataExist(player)) {
+            if (!UserData.getintDataUserdata(player, "GensTotal").equals(UserData.getintDataUserdata(player, "GensMax"))) {
+                RegisterGen.registerGen(location, block, player);
+                player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("PlacedGenMessage")));
+            } else {
+                player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("MaxGensMessage")));
+                event.setCancelled(true);
+            }
         } else {
-            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("MaxGensMessage")));
-            event.setCancelled(true);
+            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("UserDataNotSet", "&8&L[ &e&lORE &8&L] &cKunne ikke finde din userdata... &aopretter userdata")));
+            DefaultConfig.defaultConfig(player);
         }
-
 
     }
 }
