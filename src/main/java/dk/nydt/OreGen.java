@@ -19,7 +19,6 @@ public class OreGen extends JavaPlugin {
     public static Config config;
     public static FileConfiguration configYML;
     public static OreGen instance;
-
     @Override
     public void onEnable() {
         // Plugin startup logic

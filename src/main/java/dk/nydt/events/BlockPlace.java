@@ -1,6 +1,11 @@
 package dk.nydt.events;
 
 import dk.nydt.OreGen;
+import dk.nydt.gens.RegisterGen;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,8 +22,10 @@ public class BlockPlace implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        UUID uuid = event.getPlayer().getUniqueId();
-
+        Location location = event.getBlock().getLocation();
+        Material block = event.getBlock().getType();
+        Bukkit.broadcastMessage("block " + block);
+        RegisterGen.registerGen(location, block, player);
 
     }
 }

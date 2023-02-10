@@ -1,5 +1,6 @@
 package dk.nydt.config;
 
+import dk.nydt.OreGen;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -91,3 +92,4 @@ public class UserData {
     }
 
 }
+

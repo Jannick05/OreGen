@@ -1,5 +1,6 @@
 package dk.nydt.events;
 
+import com.mojang.authlib.yggdrasil.response.User;
 import dk.nydt.OreGen;
 import dk.nydt.config.UserData;
 import org.bukkit.Bukkit;
