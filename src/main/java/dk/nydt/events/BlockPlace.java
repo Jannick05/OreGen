@@ -39,6 +39,7 @@ public class BlockPlace implements Listener {
                 event.setCancelled(true);
             }
         } else {
+            event.setCancelled(true);
             player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("UserDataNotSet", "&8&L[ &e&lORE &8&L] &cKunne ikke finde din userdata... &aopretter userdata")));
             DefaultConfig.defaultConfig(player);
         }
