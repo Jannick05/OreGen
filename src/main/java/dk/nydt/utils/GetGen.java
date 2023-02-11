@@ -61,9 +61,9 @@ public enum GetGen {
             double z = gen.getDouble("Location.Z");
             Location location2 = new Location(world, x, y, z);
 
-            Bukkit.broadcastMessage(Chat.colored("&8[ &c&lDEBUG CheckGen &8]"));
-            Bukkit.broadcastMessage(String.valueOf(location));
-            Bukkit.broadcastMessage(String.valueOf(location2));
+            //Bukkit.broadcastMessage(Chat.colored("&8[ &c&lDEBUG CheckGen &8]"));
+            //Bukkit.broadcastMessage(String.valueOf(location));
+            //Bukkit.broadcastMessage(String.valueOf(location2));
 
             //CHECKING IF LOCATIONS MATCH
             if (location.equals(location2)) {

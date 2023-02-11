@@ -14,8 +14,12 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RemoveGen {
+
+
     public static void removeGen(Location location, Material material, Player player) {
         File file = new File(OreGen.getInstance().getDataFolder() + File.separator + "userdata" + File.separator + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -30,24 +34,34 @@ public class RemoveGen {
             Location location2 = new Location(world, x, y, z);
             Bukkit.broadcastMessage(Chat.colored("&8[ &a&lLOOP KEYS &8]"));
             Bukkit.broadcastMessage(String.valueOf(key));
-            Bukkit.broadcastMessage(String.valueOf(location2));
+            Bukkit.broadcastMessage(String.valueOf(location2.toString()));
             Bukkit.broadcastMessage(String.valueOf(location));
+            Bukkit.broadcastMessage(Chat.colored("&8[ &a&lLDONE MED LOOP KEYS &8]"));
 
             if (location.equals(location2)) {
-                Bukkit.broadcastMessage(String.valueOf("GOT THROUGH!"));
+                Bukkit.broadcastMessage(Chat.colored("&8[ &a&lLLOCATION MATCHER &8]"));
+                Bukkit.broadcastMessage("GOT THROUGH!");
                 location.getBlock().setType(Material.AIR);
+
                 //TODO: Giv spilleren gen tilbage
                 //REMOVING FROM CONFIG
+
                 config.set("Gens." + key, null);
-                int genstotal = config.getInt("GensTotal");
-                config.set("GensTotal", genstotal - 1);
+                Bukkit.broadcastMessage("config.set to null");
+                int gensTotal = config.getInt("GensTotal");
+                config.set("GensTotal", gensTotal - 1);
+                Bukkit.broadcastMessage("gensTotal - 1 " + gensTotal);
 
                 //SAVING CONFIG
+                // Save the config asynchronously
+
                 try {
                     config.save(file);
+                    //UserData.saveUserData(player);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             }
 
         }
