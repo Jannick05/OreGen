@@ -2,3 +2,6 @@
 MaxGensMessage: "&8&L[ &e&lORE &8&L] &cDu har max antal gens."
 PlacedGenMessage: "&8&L[ &e&lORE &8&L] &aDu placed en gen."
 UserDataNotSet: "&8&L[ &e&lORE &8&L] &cKunne ikke finde din userdata... &aopretter userdata"
+
+GenRemoveBesked: "&8&L[ &e&lORE &8&L] &cDu fjernede en gen."
+GenShiftRemoveBesked: "&8&L[ &e&lORE &8&L] &cDu skal shifte for at fjerne gens"
