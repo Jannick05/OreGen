@@ -14,9 +14,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BlockPlace implements Listener {
 
     OreGen plugin;
+
 
     public BlockPlace(OreGen plugin) {
         this.plugin = plugin;
@@ -25,23 +29,60 @@ public class BlockPlace implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        Location location = event.getBlock().getLocation();
-        Material block = event.getBlock().getType();
-        Bukkit.broadcastMessage("block " + block);
+        Block block = event.getBlock();
+        Material material = block.getType();
+        Location location = block.getLocation();
+        Bukkit.broadcastMessage(Chat.colored("&8[ &a&lBLOCK DATA &8] &f") + block.getData());
 
-        //New
-        if (UserData.UserDataExist(player)) {
-            if (!UserData.getintDataUserdata(player, "GensTotal").equals(UserData.getintDataUserdata(player, "GensMax"))) {
-                RegisterGen.registerGen(location, block, player);
-                player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("PlacedGenMessage")));
-            } else {
-                player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("MaxGensMessage")));
-                event.setCancelled(true);
+        HashMap genMap = LoadGens.genMap;
+
+        //GenData genData2 = (GenData) genMap.get(1);
+        //System.out.println("Block Material: " + genData2.getBlockMaterial());
+        //System.out.println("Block ID: " + genData2.getBlockId());
+        //System.out.println("getBlockName(): " + genData2.getBlockName());
+
+        GenData genData = null;
+        boolean isGenerator = false;
+
+        for (int i = 0; i < genMap.size(); i++) {
+            if (((GenData) genMap.get(i + 1)).getBlockMaterial() == material) {
+
+                genData = (GenData) genMap.get(i + 1);
+
+                if (block.getData() == genData.getBlockId()) {
+
+                    if(player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(Chat.colored(genData.getBlockName()))) {
+                        isGenerator = true;
+                        break;
+                    }
+                }
             }
-        } else {
-            event.setCancelled(true);
-            player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("UserDataNotSet", "&8&L[ &e&lORE &8&L] &cKunne ikke finde din userdata... &aopretter userdata")));
-            DefaultConfig.defaultConfig(player);
+        }
+
+
+        if (isGenerator) {
+
+            // get the GenData object associated with the material
+            Material blockMaterial = genData.getBlockMaterial();
+            int blockId = genData.getBlockId();
+            String blockName = genData.getBlockName();
+            int blockPris = genData.getBlockPris();
+            String blockSpawner = genData.getBlockSpawner();
+
+
+            if (UserData.UserDataExist(player)) {
+                if (!UserData.getintDataUserdata(player, "GensTotal").equals(UserData.getintDataUserdata(player, "GensMax"))) {
+                    RegisterGen.registerGen(location, material, event.getBlock(), player);
+                    player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("PlacedGenMessage")));
+                } else {
+                    player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("MaxGensMessage")));
+                    event.setCancelled(true);
+                }
+            } else {
+                event.setCancelled(true);
+                player.sendMessage(Chat.colored(OreGen.config.getConfig().getString("UserDataNotSet", "&8&L[ &e&lORE &8&L] &cKunne ikke finde din userdata... &aopretter userdata")));
+                DefaultConfig.defaultConfig(player);
+            }
         }
 
     }

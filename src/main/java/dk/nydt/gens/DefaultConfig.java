@@ -15,8 +15,6 @@ import java.util.Map;
 
 public class DefaultConfig {
 
-
-
     public static void defaultConfig(Player player) {
         UserData.setDataToUserData(player, "GensTotal", 0);
         UserData.setDataToUserData(player, "GensMax", 20);

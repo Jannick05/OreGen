@@ -10,15 +10,10 @@ import org.bukkit.entity.Player;
 public class RegisterGen {
     //Block.getData() virker ikke måske fordi den ikke var en string
 
-    public static void registerGen(Location location, Material material, Player player) {
-        Bukkit.broadcastMessage(String.valueOf(UserData.getintDataUserdata(player, "GensTotal")));
+    public static void registerGen(Location location, Material material, Block block, Player player) {
         int i = UserData.getintDataUserdata(player, "GensTotal");
         i++;
         UserData.setDataToUserData(player, "GensTotal", i);
-        //DEbug
-        Bukkit.broadcastMessage("i - " + i);
-        Bukkit.broadcastMessage("Material - " + material);
-        Bukkit.broadcastMessage("location - " + location.toString());
 
         String loc = String.valueOf(location).replace(".", " ");
 

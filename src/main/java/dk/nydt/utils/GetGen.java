@@ -50,7 +50,6 @@ public enum GetGen {
     public static Boolean checkBlock(Location location, Player player) {
         FileConfiguration config = YamlConfiguration.loadConfiguration(new File(OreGen.getInstance().getDataFolder() + File.separator + "userdata" + File.separator + player.getUniqueId() + ".yml"));
         ConfigurationSection gens = config.getConfigurationSection("Gens");
-        Bukkit.broadcastMessage(String.valueOf(gens.getKeys(false).size()));
         for (String key : gens.getKeys(false)) {
 
             //SETTING LOCATIONS
@@ -60,10 +59,6 @@ public enum GetGen {
             double y = gen.getDouble("Location.Y");
             double z = gen.getDouble("Location.Z");
             Location location2 = new Location(world, x, y, z);
-
-            //Bukkit.broadcastMessage(Chat.colored("&8[ &c&lDEBUG CheckGen &8]"));
-            //Bukkit.broadcastMessage(String.valueOf(location));
-            //Bukkit.broadcastMessage(String.valueOf(location2));
 
             //CHECKING IF LOCATIONS MATCH
             if (location.equals(location2)) {
