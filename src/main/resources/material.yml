@@ -1,0 +1,14 @@
+Genlist:
+  1:
+
+    BlockMaterial: STAINED_CLAY
+    BlockID: 0
+    BlockName: "&f&LWHITE CLAY"
+    BlockPris: 300
+    BlockSpawner: BONE_MEAL
+  2:
+    BlockMaterial: STAINED_CLAY
+    BlockID: 1
+    BlockName: "&6&LORANGE CLAY"
+    BlockPris: 500
+    BlockSpawner: BONE_MEAL
