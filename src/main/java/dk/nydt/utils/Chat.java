@@ -12,4 +12,16 @@ public class Chat {
         return s.replaceAll("§", "&");
 
     }
+
+    public static class GensVariables {
+
+        public static void addMoreToMaxGens(Player player, int i) {
+            UserData.setDataToUserData(player, "GensMax", i);
+            UserData.saveUserData(player);
+        }
+
+        public static int getMaxGen(Player player) {
+            return UserData.getintDataUserdata(player, "GensMax");
+        }
+    }
 }

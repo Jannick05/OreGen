@@ -1,11 +1,13 @@
 package dk.nydt;
 
+import dk.nydt.commands.OreCommand;
 import dk.nydt.config.Config;
 import dk.nydt.config.UserData;
 import dk.nydt.events.PlayerInteract;
 import dk.nydt.events.BlockPlace;
 import dk.nydt.events.PlayerJoin;
 import dk.nydt.events.PlayerQuit;
+import dk.nydt.utils.LoadGens;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -21,12 +23,12 @@ public class OreGen extends JavaPlugin {
     public static FileConfiguration configYML, materialYML;
 
     public static OreGen instance;
+    public static LoadGens loadGens;
     @Override
     public void onEnable() {
         // Plugin startup logic
         pluginManager = getServer().getPluginManager();
         instance = this;
-
         //Registering Listeners
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
@@ -69,5 +71,8 @@ public class OreGen extends JavaPlugin {
 
     public static OreGen getInstance(){
         return instance;
+    }
+    public static LoadGens getLoadgens(){
+        return loadGens;
     }
 }

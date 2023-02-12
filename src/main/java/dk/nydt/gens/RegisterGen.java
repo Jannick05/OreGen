@@ -22,7 +22,8 @@ public class RegisterGen {
         UserData.setDataToUserData(player, "Gens."+ loc +".Location.Y", location.getY());
         UserData.setDataToUserData(player, "Gens."+ loc +".Location.Z", location.getZ());
         UserData.setDataToUserData(player, "Gens."+ loc +".Type", material.name());
-
+        UserData.setDataToUserData(player, "Gens."+ loc +".TypeID", block.getType().getId());
+        UserData.setDataToUserData(player, "Gens."+ loc +".BlockName", block.getType().name());
         UserData.saveUserData(player);
     }
 
