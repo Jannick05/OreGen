@@ -17,8 +17,9 @@ import java.io.File;
 public class OreGen extends JavaPlugin {
     //Todo:
     private static PluginManager pluginManager;
-    public static Config config;
-    public static FileConfiguration configYML;
+    public static Config config, material;
+    public static FileConfiguration configYML, materialYML;
+
     public static OreGen instance;
     @Override
     public void onEnable() {
@@ -43,6 +44,17 @@ public class OreGen extends JavaPlugin {
 
         config = new Config(this, null, "config.yml");
         configYML = config.getConfig();
+
+        if (!(new File(getDataFolder(), "material.yml")).exists())
+            saveResource("material.yml", false);
+
+        material = new Config(this, null, "material.yml");
+        materialYML = material.getConfig();
+
+        getCommand("oregen").setExecutor(new OreCommand());
+
+        loadGens = new LoadGens();
+        loadGens.loadGens();
 
     }
 
